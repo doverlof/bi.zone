@@ -1,3 +1,10 @@
-from django.shortcuts import render
+# myapp/views.py
+from rest_framework import generics
+from .models import Subnet
+from .serializers import SubnetSerializer
 
-# Create your views here.
+
+# Представление для отображения списка всех IP-подсетей
+class SubnetListView(generics.ListAPIView):
+    queryset = Subnet.objects.all()
+    serializer_class = SubnetSerializer
