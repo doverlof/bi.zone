@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+import ipaddress
 
 
 class Subnet(models.Model):
@@ -11,3 +13,13 @@ class Subnet(models.Model):
 
     def __str__(self):
         return self.subnet
+
+    def save(self, *args, **kwargs):
+        try:
+            ipaddress.IPv4Network(self.subnet, strict=False)
+        except ValueError:
+            raise ValidationError(
+                "Введите корректное значение IP-адреса с маской в формате CIDR"
+            )
+
+        super().save(*args, **kwargs)
