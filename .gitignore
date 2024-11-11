@@ -1,1 +1,21 @@
+
+# Python compiled files
+__pycache__/
+*.pyc
+
+# Virtual environment folder
 .venv/
+
+# VS Code settings
+.vscode/
+
+# Pytest cache and temporary files
+.pytest_cache/
+*.pytest-*
+
+# Django migration caches
+**/migrations/__pycache__/
+
+# Ignore specific migration files except __init__.py
+**/migrations/*.py
+!**/migrations/__init__.py
