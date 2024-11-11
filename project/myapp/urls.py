@@ -1,4 +1,3 @@
-# myapp/urls.py
 from django.urls import path
 from .views import (
     SubnetDeleteView,
@@ -14,6 +13,6 @@ urlpatterns = [
     path(
         "filter/",
         SubnetFilterView.as_view(),
-        name="filtеr",
+        name="filter",
     ),
 ]
