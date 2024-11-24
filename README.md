@@ -5,7 +5,8 @@ created by Filinov Dmitry
 
 *** Описание подключения проекта ***
 1) откройте docker
-2) передите в папку project, которая выше
+2) перейдите в папку project, которая выше
+`cd project`
 3) выполните `docker-compose up --build`
 4) зайдите в браузер по ссылке `http://localhost:8000`
 

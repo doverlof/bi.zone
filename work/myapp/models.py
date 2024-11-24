@@ -1,4 +1,3 @@
-from time import timezone
 from django.db import models
 from django.core.exceptions import ValidationError
 import ipaddress
@@ -7,12 +6,9 @@ import ipaddress
 class Subnet(models.Model):
     subnet = models.CharField(max_length=18)
     company_id = models.IntegerField()
-    created_at = models.DateTimeField(null=True, blank=True)
-
-    def save_time(self, *args, **kwargs):
-        if not self.created_at:
-            self.created_at = timezone.now()
-        super().save(*args, **kwargs)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )  # Автоматическое время создания
 
     class Meta:
         db_table = "subnets"
@@ -27,5 +23,4 @@ class Subnet(models.Model):
             raise ValidationError(
                 "Введите корректное значение IP-адреса с маской в формате CIDR"
             )
-
         super().save(*args, **kwargs)

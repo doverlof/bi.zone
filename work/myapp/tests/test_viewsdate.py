@@ -1,5 +1,6 @@
 import pytest
 from datetime import datetime
+from unittest.mock import patch
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.test import APIClient
@@ -10,6 +11,10 @@ client = APIClient()
 
 
 @pytest.mark.django_db
+@patch(
+    "django.db.models.fields.DateTimeField.pre_save",
+    lambda self, obj, add: obj.created_at,
+)
 def test_filter_after_date():
     date1 = timezone.make_aware(datetime(2024, 1, 1, 12, 0, 0))
     date2 = timezone.make_aware(datetime(2024, 3, 1, 12, 0, 0))
@@ -28,6 +33,10 @@ def test_filter_after_date():
 
 
 @pytest.mark.django_db
+@patch(
+    "django.db.models.fields.DateTimeField.pre_save",
+    lambda self, obj, add: obj.created_at,
+)
 def test_filter_before_date():
     date1 = timezone.make_aware(datetime(2024, 1, 1, 12, 0, 0))
     date2 = timezone.make_aware(datetime(2024, 3, 1, 12, 0, 0))
@@ -46,6 +55,10 @@ def test_filter_before_date():
 
 
 @pytest.mark.django_db
+@patch(
+    "django.db.models.fields.DateTimeField.pre_save",
+    lambda self, obj, add: obj.created_at,
+)
 def test_filter_between_date():
     date1 = timezone.make_aware(datetime(2024, 1, 1, 12, 0, 0))
     date2 = timezone.make_aware(datetime(2024, 3, 1, 12, 0, 0))
