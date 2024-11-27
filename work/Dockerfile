@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Копируем файлы проекта в контейнер
 COPY . /app
-
+RUN apt-get update && apt-get install -y postgresql-client
 # Устанавливаем зависимости
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
