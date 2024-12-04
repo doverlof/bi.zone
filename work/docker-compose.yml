@@ -1,29 +1,28 @@
-version: "3.9"
+version: '3.8'
 
 services:
-  web:
-    build: .
-    container_name: work-web
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/app
-    depends_on:
-      - db
-    environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/mydb
-
   db:
-    image: postgres:13
-    container_name: my_postgres
-    environment:
-      POSTGRES_USER: postgres  # Имя пользователя
-      POSTGRES_PASSWORD: password  # Пароль
-      POSTGRES_DB: mydb  # Имя базы данных
-    ports:
-      - "5432:5432"
+    image: postgres:14
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
 
 volumes:
   postgres_data:

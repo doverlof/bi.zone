@@ -81,16 +81,27 @@ WSGI_APPLICATION = "project.wsgi.application"
 #     )
 # }
 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "save_ip",  # Имя вашей базы данных
-        "USER": "postgres",  # Пользователь
-        "PASSWORD": "tosmare",  # Пароль пользователя
-        "HOST": "localhost",  # Локальный хост
-        "PORT": "1234",  # Порт PostgreSQL
-    }
+        "NAME": "mydb",
+        "USER": "myuser",
+        "PASSWORD": "mypassword",
+        "HOST": "localhost",  # Or "db" for Docker
+        "PORT": "5432",
+    },
+    "test": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "test_mydb",
+        "USER": "myuser",
+        "PASSWORD": "mypassword",
+        "HOST": "localhost",  # Or "db" for Docker
+        "PORT": "5432",
+    },
 }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
