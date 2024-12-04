@@ -1,22 +1,20 @@
-# Используем официальный образ Python в качестве базового
+# Используем Python-образ
 FROM python:3.11-slim
 
-# Устанавливаем рабочую директорию внутри контейнера
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файлы проекта в контейнер
-COPY . /app
-RUN apt-get update && apt-get install -y postgresql-client
-# Устанавливаем зависимости
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Копируем зависимости
+# Убедитесь, что копируете requirements.txt в контейнер
+COPY requirements.txt /app/requirements.txt
 
-# Устанавливаем переменные окружения для Django
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# Установите зависимости
+RUN pip install --no-cache-dir -r /app/requirements.txt
+# Копируем весь проект
+COPY . .
 
-# Открываем порт для приложения
+# Указываем порт, который будет слушать контейнер
 EXPOSE 8000
 
-# Команда для запуска сервера
+# Команда по умолчанию
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
