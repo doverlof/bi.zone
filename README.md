@@ -3,7 +3,20 @@ for future work
 
 created by Filinov Dmitry
 
-*** Описание подключения проекта ***
+*** Описание подключения проекта для mac ***
+1) скопируйте проект 
+`git clone git@github.com:doverlof/bi.zone.git`
+2) перейдите в проект 
+`cd bi.zone`
+`code .`
+3) активируйте виртуальное окружение
+`python -m venv .venv`
+`source .venv/bin/activate`
+
+
+
+
+
 1) откройте docker
 2) перейдите в папку project, которая выше
 `cd project`
