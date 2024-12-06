@@ -88,7 +88,7 @@ DATABASES = {
         "NAME": "mydb",
         "USER": "myuser",
         "PASSWORD": "mypassword",
-        "HOST": "localhost",  # Or "db" for Docker
+        "HOST": "db",  # Or "db" for Docker
         "PORT": "5432",
     },
     "test": {
@@ -96,7 +96,7 @@ DATABASES = {
         "NAME": "test_mydb",
         "USER": "myuser",
         "PASSWORD": "mypassword",
-        "HOST": "localhost",  # Or "db" for Docker
+        "HOST": "db",  # Or  "db" for Docker
         "PORT": "5432",
     },
 }
