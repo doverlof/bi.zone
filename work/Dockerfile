@@ -1,20 +1,23 @@
-# Используем Python-образ
+# Use the official Python slim image
 FROM python:3.11-slim
 
-# Устанавливаем рабочую директорию
-WORKDIR /app
+# Set the working directory inside the container
+WORKDIR /work
 
-# Копируем зависимости
-# Убедитесь, что копируете requirements.txt в контейнер
-COPY requirements.txt /app/requirements.txt
+# Copy the requirements file into the container
+COPY requirements.txt /work/requirements.txt
 
-# Установите зависимости
-RUN pip install --no-cache-dir -r /app/requirements.txt
-# Копируем весь проект
-COPY . .
+# Install the dependencies from the requirements file
+RUN pip install --no-cache-dir -r /work/requirements.txt
 
-# Указываем порт, который будет слушать контейнер
+# Copy the rest of the project files into the container
+COPY . /work
+
+# Set the PYTHONPATH so the project modules can be discovered
+ENV PYTHONPATH=/work
+
+# Expose the port Django will run on
 EXPOSE 8000
 
-# Команда по умолчанию
+# Command to run the Django development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

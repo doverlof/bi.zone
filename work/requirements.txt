@@ -4,4 +4,5 @@ dj-database-url
 psycopg2-binary
 factory_boy
 pytest
+pytest-django
 

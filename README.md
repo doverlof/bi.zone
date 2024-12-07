@@ -12,16 +12,10 @@ created by Filinov Dmitry
 3) активируйте виртуальное окружение
 `python -m venv .venv`
 `source .venv/bin/activate`
-
-
-
-
-
-1) откройте docker
-2) перейдите в папку project, которая выше
-`cd project`
-3) выполните `docker-compose up --build`
-4) зайдите в браузер по ссылке `http://localhost:8000`
+4) перейдите в папку work, которая выше
+`cd work`
+5) выполните `docker-compose up --build`
+6) зайдите в браузер по ссылке `http://localhost:8000`
 
 *** Описание ссылок для выполнения заданий ***
 По умолчанию перекидывает на страницу, на которой отобразятся все возможные действия.

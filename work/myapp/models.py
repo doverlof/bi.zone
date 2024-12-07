@@ -6,9 +6,7 @@ import ipaddress
 class Subnet(models.Model):
     subnet = models.CharField(max_length=18)
     company_id = models.IntegerField()
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )  # Автоматическое время создания
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = "subnets"
