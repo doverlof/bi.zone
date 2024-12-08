@@ -33,12 +33,19 @@ def test_subnet_serializer_with_invalid_data():
 
 @pytest.mark.django_db
 def test_subnet_serializer_serialization():
-    subnet_instance = SubnetFactory(subnet="192.168.1.0/24")
+    subnet_instance = SubnetFactory(subnet="192.168.1.0/24", company_id=1)
     serializer = SubnetSerializer(instance=subnet_instance)
     data = serializer.data
     expected_fields = {"id", "subnet", "company_id", "created_at"}
+
     assert (
         set(data.keys()) == expected_fields
     ), "Поля выходных данных не совпадают с ожидаемыми"
-    assert data["subnet"] == "192.168.1.0/24"
-    assert data["company_id"] == 1
+
+    assert (
+        data["subnet"] == "192.168.1.0/24"
+    ), "Поле 'subnet' содержит неверное значение"
+    assert data["company_id"] == 1, "Поле 'company_id' содержит неверное значение"
+    assert isinstance(
+        data["created_at"], str
+    ), "Поле 'created_at' должно быть строкой (ISO формат)"
